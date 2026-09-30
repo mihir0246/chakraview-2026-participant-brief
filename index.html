@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAKRAVIEW 2026 - Participant Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #2c1a12;
+            --ink-light: #4a3628;
+            --red: #7c2222;
+            --gold: #9e711c;
+            --gold-bright: #c99a2e;
+            --paper: #f4ecd8;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: var(--ink);
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .docket-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--paper);
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            padding: 80px;
+            position: relative;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.9),
+                inset 0 0 80px #704214,
+                inset 0 0 150px rgba(58, 29, 4, 0.8),
+                inset 0 0 30px rgba(0,0,0,0.6),
+                inset 0 0 15px #2a1100;
+            border-radius: 8px;
+            z-index: 1;
+            border: 1px solid #4a2e15;
+        }
+
+        .docket-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(45, 20, 5, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(45, 20, 5, 0.2) 0%, transparent 35%),
+                radial-gradient(circle at 50% 95%, rgba(45, 20, 5, 0.15) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 8px;
+        }
+
+        h1, h2, h3, h4, .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 3px double var(--gold-bright);
+            position: relative;
+        }
+
+        .header::after {
+            content: '❖';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold-bright);
+            font-size: 24px;
+            background-color: var(--paper);
+            padding: 0 10px;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            color: var(--red);
+            margin-bottom: 10px;
+            letter-spacing: 6px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .tagline {
+            font-size: 1.4rem;
+            color: var(--ink-light);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .quote {
+            text-align: center;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--red);
+            margin: 40px 0;
+            font-weight: 600;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 70px 0 30px 0;
+        }
+        
+        .section-divider::before, .section-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        
+        .section-divider::before { margin-right: 1.5em; }
+        .section-divider::after { margin-left: 1.5em; }
+        
+        .section-divider h2 {
+            margin: 0;
+            color: var(--red);
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.15rem;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .ledger {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 2px solid var(--ink-light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .ledger th, .ledger td {
+            border-bottom: 1px solid rgba(74, 54, 40, 0.3);
+            border-right: 1px solid rgba(74, 54, 40, 0.3);
+            padding: 15px 20px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .ledger th:last-child, .ledger td:last-child { border-right: none; }
+        .ledger tr:last-child td { border-bottom: none; }
+        
+        .ledger th {
+            background-color: var(--ink);
+            color: var(--gold-bright);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .ledger tr:nth-child(even) { background-color: rgba(158, 113, 28, 0.05); }
+        .ledger tr:hover td { background-color: rgba(255, 255, 255, 0.6); }
+
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .role-card {
+            background: rgba(240, 230, 210, 0.6);
+            border: 1px solid var(--gold);
+            border-top: 5px solid var(--red);
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .role-card::after {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            border: 1px solid rgba(158, 113, 28, 0.3);
+            pointer-events: none;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 8px 12px 20px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--gold-bright);
+        }
+
+        .role-card h3 {
+            color: var(--red);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            text-align: left;
+        }
+
+        .highlight-box {
+            background-color: rgba(201, 154, 46, 0.1);
+            border-left: 6px solid var(--gold);
+            border-right: 1px solid var(--gold);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: inset 0 0 30px rgba(158, 113, 28, 0.05);
+        }
+        
+        .highlight-box h3 {
+            color: var(--ink);
+            text-align: left;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-table .blackout td { 
+            background-color: rgba(94, 19, 19, 0.8) !important; 
+            color: #f4ecd8; 
+        }
+        .timeline-table .blackout td:first-child { font-weight: bold; }
+
+        .warning-text {
+            color: var(--red);
+            font-weight: bold;
+            background: rgba(94, 19, 19, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .docket-container { padding: 40px 20px; }
+            .header h1 { font-size: 2.5rem; letter-spacing: 3px;}
+            .role-cards { grid-template-columns: 1fr; }
+            .ledger { font-size: 0.95rem; }
+            .ledger th, .ledger td { padding: 12px; }
+            .section-divider h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="docket-container">
+        
+        <div class="header">
+            <svg width="120" height="120" viewBox="0 0 100 100" style="margin: 0 auto 20px auto; display: block; animation: spin 20s linear infinite;">
+                <style>
+                    @keyframes spin { 100% { transform: rotate(360deg); } }
+                </style>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#9e711c" stroke-width="3"/>
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#9e711c" stroke-width="1" stroke-dasharray="4 4"/>
+                <circle cx="50" cy="50" r="15" fill="#4a2e15" stroke="#9e711c" stroke-width="2"/>
+                <path d="M50 15 L50 35 M50 65 L50 85 M15 50 L35 50 M65 50 L85 50 M25 25 L39 39 M61 61 L75 75 M25 75 L39 61 M75 25 L61 39" stroke="#7c2222" stroke-width="3"/>
+                <text x="50" y="54" font-family="Cinzel" font-size="12" fill="#c99a2e" text-anchor="middle" font-weight="bold">चक्र</text>
+            </svg>
+            <h1>CHAKRAVIEW 2026</h1>
+            <div class="tagline">Participant Briefing Document</div>
+            <p style="text-align: center; font-size: 1.1rem; color: var(--ink-light); margin-top: 10px;">A Leadership Simulation of Governance, Execution & Collective Responsibility</p>
+        </div>
+
+        <div class="quote">“No council moves by one hand. Every office turns the wheel.”</div>
+
+        <div class="section-divider"><h2>00 // The Council's Mandate</h2></div>
+        
+        <h3 class="cinzel" style="color: var(--ink); text-align: left;">What is CHAKRAVIEW?</h3>
+        <p>CHAKRAVIEW is a month-long, high-intensity executive simulation engineered to test, develop, and elevate your leadership competency. The initiative creates a parallel operating system within the club. As a participant, you will not just be attending events—you will be planning, funding, executing, and defending them.</p>
+        
+        <h3 class="cinzel" style="color: var(--ink); text-align: left; margin-top: 30px;">The Idea Behind the Name</h3>
+        <table class="ledger">
+            <tr><th width="20%">Element</th><th>Meaning in Chakraview</th></tr>
+            <tr><td class="cinzel">Chakra</td><td>A connected wheel: every part contributes to the movement of the whole.</td></tr>
+            <tr><td class="cinzel">View</td><td>Participants experience the club from a completely new operational perspective.</td></tr>
+            <tr><td class="cinzel">Council</td><td>Leadership is treated as a collective system of responsibilities, not a one-person hierarchy.</td></tr>
+            <tr><td class="cinzel">Office</td><td>Each participant is strictly accountable for one portfolio while remaining responsible for the success of the full council.</td></tr>
+        </table>
+
+        <div class="section-divider"><h2>01 // The Ten Sabhasads</h2></div>
+        <p>60 active Rotaractors will be divided into 6 balanced Councils of exactly 10 members each. Within your Council, there are no hierarchical titles. Every member holds a specific "Sabhasad" office with equal responsibility but differentiated accountability.</p>
+
+        <div class="role-cards">
+            <div class="role-card">
+                <h3>Sabhasad — Nayak</h3>
+                <p><strong>The Visionary:</strong> The chief representative of the Council. Responsible for setting the strategic roadmap (PoA), aligning the team's agenda, charting the vision, and ensuring overall direction and momentum.</p>
+            </div>
+            <div class="role-card">
+                <h3>Sabhasad — Lekhak</h3>
+                <p><strong>The Scribe:</strong> The master of records and governance. Tasked with meticulously documenting all proceedings, drafting the formal Minutes of Meetings, and compiling compliance dossiers and project reports.</p>
+            </div>
+            <div class="role-card">
+                <h3>Sabhasad — Senapati</h3>
+                <p><strong>The Commander:</strong> The operations chief. Drives internal synergy, manages the delegation of tasks on the ground, and actively resolves any crises, contingencies, or roadblocks that arise.</p>
+            </div>
+            <div class="role-card">
+                <h3>Sabhasad — Bhandari</h3>
+                <p><strong>The Treasurer:</strong> The guardian of the treasury. Manages the council's budget, conceptualizes and executes micro-fundraisers, and ensures absolute financial transparency through audited ledgers.</p>
+            </div>
+            <div class="role-card">
+                <h3>Sabhasad — Saarthi</h3>
+                <p><strong>The Guide:</strong> The driver of people and engagement. Focuses on maintaining high attendance, resolving internal conflicts, building team morale, and empowering other members with active roles.</p>
+            </div>
+            <div class="role-card">
+                <h3>Sabhasad — Pahredar</h3>
+                <p><strong>The Guardian:</strong> The keeper of order and protocol. Ensures meeting decorum, strict punctuality, quorum fulfillment, and conducts thorough venue and technical readiness checks before events.</p>
+            </div>
+            <div class="role-card" style="grid-column: 1 / -1; background-color: rgba(124, 34, 34, 0.05);">
+                <h3>Sabhasad — Karta (x4)</h3>
+                <p><strong>The Execution Force:</strong> The core operators of the Council. These 4 unified offices share the responsibility of bringing the assigned Avenue deliverables to life, handling everything from physical ground initiatives to digital requirements.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"><h2>02 // The Sabha Draft (The Council Auction)</h2></div>
+        <p>How are the 10-member Councils formed? They are not randomly assigned. They are built through strategy, valuation, and commerce in a high-stakes draft.</p>
+        
+        <div class="highlight-box">
+            <h3 class="cinzel">The Draft Mechanics</h3>
+            <p><strong>1. The Call for Leaders:</strong> All interested participants must fill out the official CHAKRAVIEW Entry Google Form. The Executive Core will evaluate applications based on operational readiness and strategic vision to handpick the 6 individuals who will act as the <strong>Nayaks</strong> (Council Leaders).</p>
+            <p><strong>2. The Virtual Treasury:</strong> Each selected Nayak will be granted a fixed virtual purse to build their council from the ground up.</p>
+            <p><strong>3. The Player Pool:</strong> The remaining participants will enter the open auction pool. Each member is assigned a specific "base price" dictated by their experience and perceived event value.</p>
+            <p><strong>4. The Live Bidding War:</strong> In a live, closed-room auction, the Nayaks will bid against each other to draft their remaining 9 team members. Nayaks must carefully manage their treasury to secure a fully capable 10-member Council!</p>
+        </div>
+
+        <div class="section-divider"><h2>03 // The Great Campaign</h2></div>
+        <p>The timeline of operations. Every Council must move synchronously according to this master calendar. Deadlines are absolute.</p>
+        <table class="ledger timeline-table">
+            <tr>
+                <th width="20%">Date / Window</th>
+                <th width="25%">Council Stage</th>
+                <th>What Happens</th>
+            </tr>
+            <tr>
+                <td><strong>3 Oct 2026</strong></td>
+                <td class="cinzel">The Sabha Draft & Assembly</td>
+                <td>Live auction bidding war followed by the official reveal of Council rosters, Sabhasads, and avenue allotments.</td>
+            </tr>
+            <tr>
+                <td><strong>3–11 Oct</strong></td>
+                <td class="cinzel">Sankalpa & First Movement</td>
+                <td>Submission of the Plan of Action (PoA); release of Council reveal reels; preliminary initiatives and PR blitz.</td>
+            </tr>
+            <tr class="blackout">
+                <td><strong>12–17 Oct</strong></td>
+                <td class="cinzel">Academic Blackout / Mauna</td>
+                <td>No physical events, meetings, or promotional ground drives permitted. Asynchronous digital planning only.</td>
+            </tr>
+            <tr>
+                <td><strong>18–24 Oct</strong></td>
+                <td class="cinzel">The Flagship Run</td>
+                <td>Execution of heavy physical drives, tournaments, workshops, beneficiary initiatives, and mandatory fundraisers.</td>
+            </tr>
+            <tr>
+                <td><strong>25–27 Oct</strong></td>
+                <td class="cinzel">The Chronicle & Audit</td>
+                <td>Final submission of project reports, verified photographic repositories, and audited balance sheets.</td>
+            </tr>
+            <tr>
+                <td><strong>28 Oct</strong></td>
+                <td class="cinzel">Raj Sabha</td>
+                <td>The final defense: an executive pitch followed by cross-examination before the actual Executive Core.</td>
+            </tr>
+        </table>
+
+        <div class="section-divider"><h2>04 // Domains of Execution</h2></div>
+        <p>Upon formation, each Council will be assigned <strong>Avenue 1</strong> and <strong>Avenue 2</strong>. These two avenues become your Council's principal project battlefield for the month. You will be required to execute flagship events, digital campaigns, and community interventions based entirely on these assigned domains.</p>
+        
+        <table class="ledger">
+            <tr>
+                <th>Council</th>
+                <th>Avenue 1</th>
+                <th>Avenue 2</th>
+            </tr>
+            <tr><td class="cinzel">Council 1</td><td>Community Service</td><td>Editorial Service</td></tr>
+            <tr><td class="cinzel">Council 2</td><td>Professional Development (PD)</td><td>Digital Communication (DigiCom)</td></tr>
+            <tr><td class="cinzel">Council 3</td><td>Sports</td><td>Social Media Relations (SMR)</td></tr>
+            <tr><td class="cinzel">Council 4</td><td>Entrepreneurship Development (ED)</td><td>Public Relations (PR)</td></tr>
+            <tr><td class="cinzel">Council 5</td><td>Shiksha (Education)</td><td>International Service (IS)</td></tr>
+            <tr><td class="cinzel">Council 6</td><td>Club Service</td><td>Marketing</td></tr>
+        </table>
+
+        <div class="highlight-box">
+            <h3 class="cinzel">What to Expect</h3>
+            <p>Depending on your Council's allocation, your team might be tasked with executing high-impact beneficiary donation drives, hosting massive external speaker sessions, organizing campus-wide sports tournaments, pulling off physical flash mobs, securing corporate sponsorships, or drafting international diplomatic agreements.</p>
+            <p>In addition, all Councils are required to maintain a universal communications mandate—including high-quality reveal reels, event teasers, and synchronized PR broadcasts across the campus.</p>
+        </div>
+
+        <div class="section-divider"><h2>05 // Maryada & The Raj Sabha</h2></div>
+        
+        <h3 class="cinzel" style="color: var(--ink); text-align: left;">Maryada: The Code of Conduct</h3>
+        <p>Your Council will be evaluated by an internal scoring system tracking your efficiency, reach, and execution. However, strict adherence to the rules is mandatory. <strong>Severe consequences</strong> will be applied to your Council's standing for:</p>
+        <ul style="font-size: 1.15rem; color: var(--ink); padding-left: 20px;">
+            <li>Late reporting or missed deadlines.</li>
+            <li>Financial discrepancies, missing bills, or unaccounted funds.</li>
+            <li>Failure to maintain decorum or punctuality during simulation meetings.</li>
+            <li><strong>Academic Blackout Violations:</strong> Conducting any physical events or ground promotions between Oct 12-17 will result in immediate disqualification of the event.</li>
+        </ul>
+
+        <h3 class="cinzel" style="color: var(--ink); text-align: left; margin-top: 30px;">Raj Sabha: The Final Council</h3>
+        <p>On 28 October 2026, the simulation culminates in the Raj Sabha. Each Council must present and defend its month-long tenure before a Jury Panel composed of the actual club Executive Core.</p>
+        <table class="ledger" style="margin-top: 10px;">
+            <tr>
+                <th width="20%">Stage</th>
+                <th width="20%">Duration</th>
+                <th>Protocol & Requirements</th>
+            </tr>
+            <tr>
+                <td><strong>Executive Pitch</strong></td>
+                <td>15 Minutes (Uninterrupted)</td>
+                <td>Present operational delivery across both avenues, reach metrics, financial statements, and Council dynamics.</td>
+            </tr>
+            <tr>
+                <td><strong>Cross-Examination</strong></td>
+                <td>10 Minutes</td>
+                <td>Formal questioning by the Jury. The Nayak, Lekhak, and Bhandari must be prepared to defend their records.</td>
+            </tr>
+        </table>
+
+        <div style="background-color: rgba(44, 30, 22, 0.9); color: #f4ecd8; padding: 40px; border: 2px solid var(--gold); box-shadow: 0 15px 30px rgba(0,0,0,0.5); border-radius: 6px; margin-top: 60px;">
+            <h3 class="cinzel" style="color: var(--gold-bright); text-align: center; font-size: 2rem; margin-top: 0;">06 // The Council Charter</h3>
+            <ul style="list-style-type: square; padding-left: 20px; font-size: 1.1rem; line-height: 1.8;">
+                <li><strong style="color: var(--gold-bright);">Own the Office:</strong> Your Sabhasad belongs to you. Track its deadlines, execute its duties, and own the outcomes.</li>
+                <li><strong style="color: var(--gold-bright);">Serve the Council:</strong> A successful individual portfolio does not compensate for a failing team. Help your fellow Sabhasads.</li>
+                <li><strong style="color: var(--gold-bright);">Document the Work:</strong> No claim should depend on memory alone. Preserve your evidence, photos, and bills.</li>
+                <li><strong style="color: var(--gold-bright);">Account for Every Rupee:</strong> Financial transparency is a strict responsibility, not an afterthought.</li>
+                <li><strong style="color: var(--gold-bright);">Cross the Walls:</strong> Support other Councils. Attend their events. True leadership is collaborative.</li>
+                <li><strong style="color: var(--gold-bright);">Defend the Chronicle:</strong> Your Council must be able to explain what it promised, what it delivered, what changed, and why.</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"><h2>07 // One-Page Action Brief</h2></div>
+        <table class="ledger" style="background-color: rgba(158, 113, 28, 0.1); border-color: var(--gold);">
+            <tr><th width="20%" style="background-color: var(--red); color: white;">Step</th><th style="background-color: var(--ink); color: var(--gold-bright);">Your Council Must...</th></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">1 • Assemble</td><td>Apply, enter the Draft, and form your 10-member Council.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">2 • Declare</td><td>Draft your official Plan of Action (PoA) and assume your Sabhasad roles.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">3 • Create</td><td>Launch your team reveal reel and initial digital campaigns.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">4 • Observe</td><td>Respect the academic blackout. Plan, but do not move on the ground.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">5 • Execute</td><td>Deliver your Avenue 1 and Avenue 2 flagship projects.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">6 • Account</td><td>Maintain flawless evidence, project reports, media drives, and finances.</td></tr>
+            <tr><td class="cinzel" style="font-weight: bold;">7 • Defend</td><td>Stand before the Raj Sabha and prove your Council's worth.</td></tr>
+        </table>
+
+        <div style="text-align: center; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--gold);">
+            <p class="cinzel" style="font-weight: 800; color: var(--ink); font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 10px;">ONE CHAKRA. TEN SABHASAD OFFICES. SIX COUNCILS. ONE MANDATE.</p>
+            <p class="cinzel" style="font-weight: 800; color: var(--red); font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 2px;">THE WHEEL AWAITS YOUR HAND.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
